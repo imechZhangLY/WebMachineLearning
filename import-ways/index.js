@@ -27,9 +27,12 @@ async function run(ort, options) {
     try {
         ort.env.wasm.wasmPaths = 'dist/';
         ort.env.wasm.numThreads = 1;
+        ort.env.logLevel = 'verbose';
+        ort.env.debug = true;
         // input: a 3x4 matrix, b 4x3 matrix
         // output: c 3x3 matrix = a * b
         const session = await ort.InferenceSession.create('./model.onnx', options);
+        console.log(session);
 
         const dataA = Float32Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
         const dataB = Float32Array.from([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]);
@@ -60,3 +63,5 @@ document.addEventListener("DOMContentLoaded", () => {
         run(ort, { executionProviders: [backend] });
     });
 });
+
+run(ortAll, { executionProviders: ["webnn", "webgpu", "webgl", "wasm"] });
