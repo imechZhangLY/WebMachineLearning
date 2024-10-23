@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Test performance for different backends</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <script type="module" src="dist/performance.js"></script>
+</head>
+
+<body data-bs-theme="light">
+  <title>Test performance for different backends</title>
+  <div class="container-fluid">
+    <div class="row">
+        <label class="col-1">Backends:</label>
+            <select id="backend" class="form-select">
+                <option value="wasm">wasm</option>
+                <option value="webgl">webgl</option>
+                <option value="webgpu">webgpu</option>
+                <option value="webnn">webnn</option>
+            </select>
+        <button id="run" class="btn btn-primary col-2">Run Model</button>
+    </div>
+    <div>
+      <label>Output</label>
+      <pre id="output"></pre>
+    </div>
+    <div>
+        <label>Performance:</label>
+        <div class="row">
+            <label class="col-1">Wasm:</label>
+            <pre class="col" id="wasm"></pre>
+        </div>
+        <div class="row">
+            <label class="col-1">WebGL:</label>
+            <pre class="col" id="webgl"></pre>
+        </div>
+        <div class="row">
+            <label class="col-1">WebGPU:</label>
+            <pre class="col" id="webgpu"></pre>
+        </div>
+        <div class="row">
+            <label class="col-1">WebNN:</label>
+            <pre class="col" id="webnn"></pre>
+        </div>
+    </div>
+</body>
