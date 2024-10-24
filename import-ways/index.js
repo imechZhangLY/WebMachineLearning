@@ -19,13 +19,16 @@ const ways = {
 
 function log(message) {
     const logElement = document.querySelector("#output");
-    logElement.textContent = message;
+    logElement.textContent += `\n${message}`;
 }
 
 // use an async context to call onnxruntime functions.
-async function run(ort, options) {
+async function run(ort, options, multipleSupport = false) {
     try {
         ort.env.wasm.wasmPaths = 'dist/';
+        if (multipleSupport) {
+            ort.env.wasm.numThreads = 4;
+        }
         ort.env.wasm.numThreads = 1;
         ort.env.logLevel = 'verbose';
         ort.env.debug = true;
@@ -63,5 +66,3 @@ document.addEventListener("DOMContentLoaded", () => {
         run(ort, { executionProviders: [backend] });
     });
 });
-
-run(ortAll, { executionProviders: ["webnn", "webgpu", "webgl", "wasm"] });
